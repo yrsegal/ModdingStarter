@@ -16,8 +16,6 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'idea'
 apply plugin: 'java'
 
-
-
 version = mod_version
 group = mod_author + "." + mod_name
 archivesBaseName = mod_name
@@ -81,6 +79,8 @@ compileTestKotlin {
         jvmTarget = "1.8"
     }
 }
+
+genIntellijRuns.shouldRunAfter(idea)
 
 idea {
     module {
@@ -159,6 +159,12 @@ task copyModFiles {
 
 setupDecompWorkspace {
     dependsOn copyModFiles
+}
+
+task setup {
+    dependsOn setupDecompWorkspace
+    dependsOn ideaModule
+    dependsOn genIntellijRuns
 }
 
 repositories {

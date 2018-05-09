@@ -33,6 +33,8 @@ ext.core_plugin_compressed = "-Dfml.coreMods.load=" + core_plugin_args.join(",")
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+genIntellijRuns.shouldRunAfter(idea)
+
 minecraft {
     version = project.mc_version + "-" + project.forge_version
     mappings = project.mcp_version
@@ -116,6 +118,12 @@ task copyModFiles {
 
 setupDecompWorkspace {
     dependsOn copyModFiles
+}
+
+task setup {
+    dependsOn setupDecompWorkspace
+    dependsOn ideaModule
+    dependsOn genIntellijRuns
 }
 
 repositories {
