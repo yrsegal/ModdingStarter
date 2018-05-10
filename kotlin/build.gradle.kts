@@ -130,7 +130,6 @@ for (set in java.sourceSets) {
 
     val compileTask = tasks.withTypeIfPresent<KotlinCompile>(set.getCompileTaskName("kotlin"))
     if (compileTask != null) {
-        compileTask.source = fileTree(dir)
         compileTask.dependsOn(taskName)
         val dirPath = dir.toPath()
         tasks.withType<KotlinCompile> {
