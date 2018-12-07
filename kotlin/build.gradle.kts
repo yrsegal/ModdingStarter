@@ -230,7 +230,7 @@ tasks.getByName("setupDecompWorkspace") {
 
 task<Task>("setup") {
     dependsOn("setupDecompWorkspace")
-    dependsOn("ideaModule")
+    dependsOn("idea")
     dependsOn("genIntellijRuns")
 }
 
